@@ -1,5 +1,7 @@
 package org.example;
 
+// All required imports for Frame class
+
 import com.google.gson.Gson;
 
 import java.awt.*;
@@ -11,20 +13,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
-// Our class extends Frame class and implements ActionListener interface
+// Our class extends Frame class and implements ActionListener interface WindowListener KeyListener
 
 public class CurrencyConvertor extends Frame implements ActionListener, WindowListener, KeyListener {
     // creating instances of TextField and Button class
-    TextField tf1,tf3;
+    TextField tf1, tf3;
     Button b1;
-    Choice c1,c2;
+    Choice c1, c2;
 
-    String[] currency={"USD","AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF","BMD","BND","BOB","BRL","BSD","BTN","BWP","BYN","BZD","CAD","CDF","CHF","CLP","CNY","COP","CRC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","FOK","GBP","GEL","GGP","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","IMP","INR","IQD","IRR","ISK","JEP","JMD","JOD","JPY","KES","KGS","KHR","KID","KMF","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRU","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLE","SLL","SOS","SRD","SSP","STN","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TVD","TWD","TZS","UAH","UGX","UYU","UZS","VES","VND","VUV","WST","XAF","XCD","XDR","XOF","XPF","YER","ZAR","ZMW","ZWL"};
+    String[] currency = {"USD", "AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BRL", "BSD", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLP", "CNY", "COP", "CRC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "FOK", "GBP", "GEL", "GGP", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "IMP", "INR", "IQD", "IRR", "ISK", "JEP", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KID", "KMF", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRU", "MUR", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLE", "SLL", "SOS", "SRD", "SSP", "STN", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TVD", "TWD", "TZS", "UAH", "UGX", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XDR", "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWL"};
 
     // instantiating using constructor
     CurrencyConvertor() {
         // instantiating objects of text field and button
         // setting position of components in frame
+
         tf1 = new TextField();
         tf1.setBounds(80, 80, 150, 20);
         tf1.setText("Enter Numerical value");
@@ -43,11 +46,12 @@ public class CurrencyConvertor extends Frame implements ActionListener, WindowLi
 
         b1 = new Button("Calculate");
         b1.setBounds(80, 280, 150, 50);
-        for(String s:currency){
+        for (String s : currency) {
             c1.add(s);
             c2.add(s);
         }
-        // adding action listener
+        // adding action listener and key listener to fields
+
         tf1.addKeyListener(this);
         b1.addActionListener(this);
         // adding components to frame
@@ -56,7 +60,8 @@ public class CurrencyConvertor extends Frame implements ActionListener, WindowLi
         add(c2);
         add(tf3);
         add(b1);
-        // setting size, layout and visibility of frame
+        // setting size, layout and visibility, Color, IconImage, title of frame
+
         setSize(300, 400);
         setLayout(null);
         setVisible(true);
@@ -72,7 +77,7 @@ public class CurrencyConvertor extends Frame implements ActionListener, WindowLi
 
     }
 
-
+    // Override method which is declared in KeyListener interface for (tf1) addKeyListener method
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -89,46 +94,49 @@ public class CurrencyConvertor extends Frame implements ActionListener, WindowLi
 
     }
 
-
-    public Map<?,?> readFile() throws IOException {
-        String file_name="data.json";
+    // readFile method of Type Map for read data.json file and pass to actionPerformed method
+    public Map<?, ?> readFile() throws IOException {
+        String file_name = "data.json";
         Gson gson = new Gson();
-        Map<?,?> data;
+        Map<?, ?> data;
         Path path = Paths.get(file_name);
         Reader reader = Files.newBufferedReader(path);
         data = gson.fromJson(reader, Map.class);
         return (Map<?, ?>) data.get("conversion_rates");
     }
 
-    // defining the actionPerformed method to generate an event on buttons
+    // defining the actionPerformed method which is non-define method of ActionListener Interface to generate an event on b1 buttons addActionListener method
     public void actionPerformed(ActionEvent e) {
-        Map<?,?> pull;
+        Map<?, ?> pull;
         String s1;
-        String cs1,cs2;
+        String cs1, cs2;
         try {
             s1 = tf1.getText();
             cs1 = c1.getItem(c1.getSelectedIndex());
             cs2 = c2.getItem(c2.getSelectedIndex());
-            pull= readFile();
+            pull = readFile();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        double x,y,z;
-        x= (double) pull.get(cs1);
-        y= (double) pull.get(cs2);
-        z= y/x;
-        if(s1.isEmpty()){tf3.setText("Error");}
-        else {
+        double x, y, z;
+        x = (double) pull.get(cs1);
+        y = (double) pull.get(cs2);
+        z = y / x;
+        if (s1.isEmpty()) {
+            tf3.setText("Error");
+        } else {
             String result = String.valueOf(z * Double.parseDouble(s1));
             tf3.setText(result);
         }
     }
 
+    // Override methods of WindowListener for WindowEvents (closing event)
     @Override
     public void windowOpened(WindowEvent e) {
 
     }
 
+    //Close window when click on exit icon
     @Override
     public void windowClosing(WindowEvent e) {
         dispose();
