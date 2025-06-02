@@ -28,11 +28,7 @@ A **Java-based currency converter** using AWT for the graphical interface and [v
 
 ---
 
-## 📷 Preview
 
-> *(Insert image or screenshot of your application here)*
-
----
 
 ## 🔧 How to Run
 
